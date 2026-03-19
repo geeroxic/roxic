@@ -1,0 +1,23 @@
+{% comment %} Minimal product template - required for product pages {% endcomment %}
+<div class="product-page" style="max-width: var(--container); margin: 0 auto; padding: 2rem var(--space);">
+  <div style="display: grid; gap: 2rem; grid-template-columns: 1fr 1fr;">
+    <div class="product-gallery">
+      {% if product.featured_image %}
+        <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.featured_image.alt | escape }}" width="600" />
+      {% endif %}
+    </div>
+    <div class="product-info">
+      <h1>{{ product.title }}</h1>
+      <p>{{ product.price | money }}</p>
+      {% form 'product', product %}
+        <select name="id">
+          {% for variant in product.variants %}
+            <option value="{{ variant.id }}" {% if variant == product.selected_or_first_available_variant %}selected{% endif %}>{{ variant.title }} - {{ variant.price | money }}</option>
+          {% endfor %}
+        </select>
+        <button type="submit" name="add">Add to cart</button>
+      {% endform %}
+      <div class="product-description">{{ product.description }}</div>
+    </div>
+  </div>
+</div>

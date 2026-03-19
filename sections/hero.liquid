@@ -1,0 +1,32 @@
+<section class="hero" id="home">
+  <div class="hero-figure">
+    {% if section.settings.image != blank %}
+      <img src="{{ section.settings.image | image_url: width: 440 }}" alt="{{ section.settings.image.alt | default: 'ROXIC' }}" loading="lazy" class="hero-spin" />
+    {% else %}
+      {% comment %} Default: use theme asset so the spinning logo shows without picking in Customizer {% endcomment %}
+      <img src="{{ 'hero-figure.png' | asset_url }}" alt="ROXIC" loading="eager" width="220" height="220" class="hero-spin" />
+    {% endif %}
+  </div>
+  <p class="hero-tagline">{{ section.settings.tagline | default: 'ROXIC YOUR WAY' }}</p>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "tag": "section",
+  "class": "section-hero",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Hero image"
+    },
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Tagline",
+      "default": "ROXIC YOUR WAY"
+    }
+  ]
+}
+{% endschema %}

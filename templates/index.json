@@ -1,0 +1,44 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {}
+    },
+    "category_switcher": {
+      "type": "category-switcher",
+      "blocks": {
+        "shirts": {
+          "type": "category",
+          "settings": { "label": "Shirts" }
+        },
+        "hoodies": {
+          "type": "category",
+          "settings": { "label": "Hoodies" }
+        },
+        "pants": {
+          "type": "category",
+          "settings": { "label": "Pants" }
+        },
+        "accessories": {
+          "type": "category",
+          "settings": { "label": "Accessories", "coming_soon": true }
+        }
+      },
+      "block_order": ["shirts", "hoodies", "pants", "accessories"],
+      "settings": {}
+    },
+    "shop": {
+      "type": "featured-collection",
+      "settings": {}
+    },
+    "reviews": {
+      "type": "reviews",
+      "settings": {}
+    },
+    "about": {
+      "type": "about",
+      "settings": {}
+    }
+  },
+  "order": ["hero", "category_switcher", "shop", "reviews", "about"]
+}

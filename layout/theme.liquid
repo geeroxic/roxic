@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ page_title }}{% if current_tags %} &ndash; {{ current_tags | join: ', ' }}{% endif %}{% if current_page != 1 %} &ndash; Page {{ current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}</title>
+  {{ content_for_header }}
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  {{ 'theme.css' | asset_url | stylesheet_tag }}
+</head>
+<body class="template-{{ template.name }}">
+  <div class="intro" id="intro" role="dialog" aria-label="Welcome to ROXIC">
+    <div class="intro-inner">
+      <h1 class="intro-title">ROXIC</h1>
+      <p class="intro-subtitle">ROXIC YOUR WAY</p>
+      <button type="button" class="intro-enter" id="intro-enter">ENTER</button>
+    </div>
+  </div>
+
+  {% section 'header' %}
+
+  <main id="main">
+    {{ content_for_layout }}
+  </main>
+
+  {% section 'footer' %}
+
+  <div class="cart-drawer" id="cart-drawer" aria-hidden="true">
+    <div class="cart-drawer-inner">
+      <div class="cart-header">
+        <h2>Cart</h2>
+        <button type="button" class="cart-close" aria-label="Close cart">×</button>
+      </div>
+      <div class="cart-empty">
+        <p>Your cart is empty</p>
+      </div>
+    </div>
+  </div>
+  <div class="cart-overlay" id="cart-overlay" aria-hidden="true"></div>
+
+  {{ 'theme.js' | asset_url | script_tag }}
+</body>
+</html>

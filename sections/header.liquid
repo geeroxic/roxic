@@ -1,0 +1,59 @@
+<a href="#main" class="skip-link">Skip to content</a>
+<header class="header">
+  <div class="header-inner">
+    <a href="{{ routes.root_url }}" class="logo">ROXIC</a>
+    <nav class="nav" aria-label="Main">
+      <ul>
+        <li><a href="{{ routes.root_url }}">Home</a></li>
+        <li><a href="{{ routes.root_url }}#shop">Shop all</a></li>
+        <li><a href="{{ routes.root_url }}/pages/track-order">Track Order</a></li>
+        <li><a href="{{ routes.root_url }}#about">About us</a></li>
+        <li class="has-dropdown">
+          <button type="button" aria-expanded="false" aria-controls="policies-menu">Policies</button>
+          <ul id="policies-menu" class="dropdown" hidden>
+            {% if shop.privacy_policy %}<li><a href="{{ shop.privacy_policy.url }}">{{ shop.privacy_policy.title }}</a></li>{% endif %}
+            {% if shop.refund_policy %}<li><a href="{{ shop.refund_policy.url }}">{{ shop.refund_policy.title }}</a></li>{% endif %}
+            {% if shop.shipping_policy %}<li><a href="{{ shop.shipping_policy.url }}">{{ shop.shipping_policy.title }}</a></li>{% endif %}
+            {% if shop.terms_of_service %}<li><a href="{{ shop.terms_of_service.url }}">{{ shop.terms_of_service.title }}</a></li>{% endif %}
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <div class="country-select">
+        <button type="button" class="country-btn" aria-label="Country and currency">United States <span>USD $</span></button>
+      </div>
+      <a href="{{ routes.account_login_url }}" class="action-link">Login</a>
+      <button type="button" class="action-link cart-btn" aria-label="Cart">
+        Cart
+        <span class="cart-count" data-count="{{ cart.item_count }}">{{ cart.item_count }}</span>
+      </button>
+    </div>
+    <button type="button" class="menu-toggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-nav" aria-hidden="true">
+    <nav aria-label="Mobile">
+      <ul>
+        <li><a href="{{ routes.root_url }}">Home</a></li>
+        <li><a href="{{ routes.root_url }}#shop">Shop all</a></li>
+        <li><a href="{{ routes.root_url }}/pages/track-order">Track Order</a></li>
+        <li><a href="{{ routes.root_url }}#about">About us</a></li>
+        {% if shop.privacy_policy %}<li><a href="{{ shop.privacy_policy.url }}">{{ shop.privacy_policy.title }}</a></li>{% endif %}
+        {% if shop.refund_policy %}<li><a href="{{ shop.refund_policy.url }}">{{ shop.refund_policy.title }}</a></li>{% endif %}
+        {% if shop.shipping_policy %}<li><a href="{{ shop.shipping_policy.url }}">{{ shop.shipping_policy.title }}</a></li>{% endif %}
+        {% if shop.terms_of_service %}<li><a href="{{ shop.terms_of_service.url }}">{{ shop.terms_of_service.title }}</a></li>{% endif %}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "tag": "header",
+  "class": "section-header",
+  "settings": []
+}
+{% endschema %}

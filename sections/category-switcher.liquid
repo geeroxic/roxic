@@ -1,0 +1,75 @@
+{% comment %}
+  741-style category switcher: Shirts, Hoodies, Pants, Accessories (coming soon)
+{% endcomment %}
+<section class="category-switcher" id="category-switcher" {{ section.shopify_attributes }}>
+  <div class="category-switcher-inner">
+    <p class="category-switcher-hint">
+      <span class="category-switcher-arrow" aria-hidden="true">◀</span>
+      <span>Swipe to choose</span>
+      <span class="category-switcher-arrow" aria-hidden="true">▶</span>
+    </p>
+    <nav class="category-switcher-nav" aria-label="Shop by category">
+      <div class="category-switcher-track" role="list">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'category' %}
+              {% if block.settings.coming_soon %}
+                <span class="category-switcher-item category-switcher-item--coming-soon" role="listitem" {{ block.shopify_attributes }}>
+                  <span class="category-switcher-label">{{ block.settings.label | default: 'Category' }}</span>
+                  <span class="category-switcher-badge">Coming soon</span>
+                </span>
+              {% else %}
+                <a href="{{ block.settings.link | default: '#' }}" class="category-switcher-item" role="listitem" {{ block.shopify_attributes }}>
+                  <span class="category-switcher-label">{{ block.settings.label | default: 'Category' }}</span>
+                </a>
+              {% endif %}
+          {% endcase %}
+        {% endfor %}
+      </div>
+    </nav>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Category switcher",
+  "tag": "section",
+  "class": "section-category-switcher",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link (collection or page)"
+        },
+        {
+          "type": "checkbox",
+          "id": "coming_soon",
+          "label": "Coming soon",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Category switcher",
+      "blocks": [
+        { "type": "category", "settings": { "label": "Shirts" } },
+        { "type": "category", "settings": { "label": "Hoodies" } },
+        { "type": "category", "settings": { "label": "Pants" } },
+        { "type": "category", "settings": { "label": "Accessories", "coming_soon": true } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,28 @@
+<section class="about" id="about">
+  <h2 class="about-title">{{ section.settings.heading | default: 'what is roxic?' }}</h2>
+  <div class="about-content">
+    {{ section.settings.body }}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About",
+  "tag": "section",
+  "class": "section-about",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "what is roxic?"
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Content",
+      "default": "<p>ROXIC was born in Alexandria, Virginia with nothing but grind and vision. No shortcuts, no handouts — just real work that shows in every drop we put out there.</p><p>The slogan <strong>\"ROXIC YOUR WAY.\"</strong> Speaks for itself: anyone can copy the garms or designs, but they could never copy the story, the community, the grind, or what makes us original. To everyone rocking with us — you're the reason we keep building. Welcome to ROXIC. Love.</p><p><strong>To contact us, email:</strong> <a href='mailto:support@roxic.info'>support@roxic.info</a></p><p><strong>Hours of operation:</strong> we do more than graveyard shifts.</p>"
+    }
+  ]
+}
+{% endschema %}

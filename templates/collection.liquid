@@ -1,0 +1,21 @@
+{% comment %} Minimal collection template - required for collection pages {% endcomment %}
+<div class="collection-page" style="max-width: var(--container); margin: 0 auto; padding: 2rem var(--space);">
+  <h1>{{ collection.title }}</h1>
+  {% if collection.description != blank %}<div class="collection-description">{{ collection.description }}</div>{% endif %}
+  <div class="product-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem;">
+    {% paginate collection.products by 24 %}
+      {% for product in collection.products %}
+        <a href="{{ product.url }}" class="product-card" style="display: block; border: 1px solid var(--border); border-radius: 8px; overflow: hidden;">
+          {% if product.featured_image %}
+            <img src="{{ product.featured_image | image_url: width: 520 }}" alt="{{ product.featured_image.alt | escape }}" width="260" height="260" style="width: 100%; aspect-ratio: 1; object-fit: cover;" />
+          {% endif %}
+          <div style="padding: 0.6rem;">
+            <strong>{{ product.title }}</strong>
+            <p>{{ product.price | money }}</p>
+          </div>
+        </a>
+      {% endfor %}
+      {% if paginate.pages > 1 %}{{ paginate | default_pagination }}{% endif %}
+    {% endpaginate %}
+  </div>
+</div>

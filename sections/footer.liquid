@@ -1,0 +1,29 @@
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-nav">
+      <a href="{{ routes.root_url }}/pages/contact">Contact Us</a>
+      {% if shop.privacy_policy %}<a href="{{ shop.privacy_policy.url }}">{{ shop.privacy_policy.title }}</a>{% endif %}
+      {% if shop.refund_policy %}<a href="{{ shop.refund_policy.url }}">{{ shop.refund_policy.title }}</a>{% endif %}
+      {% if shop.shipping_policy %}<a href="{{ shop.shipping_policy.url }}">{{ shop.shipping_policy.title }}</a>{% endif %}
+      {% if shop.terms_of_service %}<a href="{{ shop.terms_of_service.url }}">{{ shop.terms_of_service.title }}</a>{% endif %}
+    </div>
+    <div class="country-select footer-country">
+      <button type="button" class="country-btn">United States <span>USD $</span></button>
+    </div>
+    <p class="copyright">© {{ 'now' | date: '%Y' }} {{ shop.name }}</p>
+    <div class="payment-methods">
+      {% for type in shop.enabled_payment_types %}
+        {{ type | payment_type_svg_tag: class: 'icon' }}
+      {% endfor %}
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "tag": "footer",
+  "class": "section-footer",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,63 @@
+<section class="reviews">
+  <h2 class="section-title">{{ section.settings.heading | default: 'Customer Reviews' }}</h2>
+  <p class="reviews-meta">{{ section.settings.subheading | default: 'Based on 3,250 reviews' }}</p>
+  <div class="reviews-grid">
+    {% for block in section.blocks %}
+      {% if block.type == 'review' %}
+        <blockquote class="review-card" {{ block.shopify_attributes }}>
+          <p class="review-text">{{ block.settings.quote }}</p>
+          <footer>
+            <cite>{{ block.settings.author }}</cite>
+            <span>{{ block.settings.location }}</span>
+            <time>{{ block.settings.time }}</time>
+          </footer>
+        </blockquote>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Reviews",
+  "tag": "section",
+  "class": "section-reviews",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Customer Reviews"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Based on 3,250 reviews"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        { "type": "textarea", "id": "quote", "label": "Quote" },
+        { "type": "text", "id": "author", "label": "Author" },
+        { "type": "text", "id": "location", "label": "Location" },
+        { "type": "text", "id": "time", "label": "Time (e.g. 2 days ago)" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Reviews",
+      "blocks": [
+        { "type": "review", "settings": { "quote": "the quality is unmatched. Worth the wait.", "author": "Sarah Joan", "location": "New York, NY", "time": "2 days ago" } },
+        { "type": "review", "settings": { "quote": "Definitely worth the wait. Quality goes crazy.", "author": "Unregistered Customer", "location": "Chicago, IL", "time": "14 days ago" } },
+        { "type": "review", "settings": { "quote": "Real quality takes time. Got what I paid for and more.", "author": "Mo Gohari", "location": "Toronto, ON", "time": "6 days ago" } },
+        { "type": "review", "settings": { "quote": "Best purchase I've made this year. The quality is outstanding.", "author": "Meo", "location": "Milton, ON", "time": "19 days ago" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
